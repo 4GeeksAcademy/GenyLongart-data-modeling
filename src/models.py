@@ -1,6 +1,6 @@
 import os
 import sys
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Column, ForeignKey, Integer, String, Table, MetaData
 from sqlalchemy.orm import relationship, declarative_base
 from sqlalchemy import create_engine
 from eralchemy2 import render_er
@@ -39,9 +39,8 @@ class Media(Base):
 
 class Follower(Base):
     __tablename__ = 'followers'
-    id = Column(Integer, primary_key=True)
-    user_from_id = Column(Integer)
-    user_to_id = Column(Integer)
+    users_id = Column( Integer, ForeignKey('users.id'), primary_key=True) 
+    followers_id = Column( Integer, ForeignKey('users.id'), primary_key=True) 
 
 ## Draw from SQLAlchemy base
 try:
